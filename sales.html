@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        h1{
+            text-align: center;
+            color: darkgreen;
+        }
+        p{
+            width: 700px;
+            margin: 2% auto;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript. Homework. Discount Program</h1>
+    <p>Магазин модного одягу розпочав сезонний розпродаж, i пропонує покупцям знижку на кожен 3-iй
+        придбаний товар. Ви обрали товари, якi хочете придбати, i бажаєте скористатися цiєю
+        пропозицiєю, щоб максимально зекономити кошти.<br>
+
+        Зрозумiло, що сума, яку вам доведеться заплатити, залежить вiд того, в якому
+        порядку ви купуватимете товари. Знаючи цiну кожного товару, а також вiдсоток
+        знижки, пiдрахуйте найвигiднiшу суму, за яку ви зможете придбати усi товари.</p>
+    <script>
+        var minSum;
+        function sales(arr, discount){
+        var quantityForSales = Math.floor (arr.length/3);
+            
+            function compareNumeric(a,b){
+                return a-b;
+            };
+            
+            var arr = arr.sort(compareNumeric);
+            var arrForSales = arr.splice(arr.length-quantityForSales, quantityForSales);
+            
+            var sum = 0;
+            for (i=0; i<arrForSales.length; i++){
+                sum += arrForSales[i]*(100-discount)/100;
+            };
+           
+            var sumWithoutSales = 0;
+            for (j=0; j<arr.length; j++){
+                sumWithoutSales += arr[j];
+            };
+            
+            minSum = (Math.round((sumWithoutSales + sum)*100)/100).toFixed(2);
+            return minSum;
+        };
+        
+        sales ([50, 20, 30, 17, 100], 10);
+        alert(minSum);
+        
+        sales ( [1, 2, 3, 4, 5, 6, 7], 100);
+        alert(minSum);
+        
+        sales ([1, 1, 1], 33);
+        alert(minSum);
+    </script>
+</body>
+</html>
